@@ -1,0 +1,10 @@
+.array-container {
+    display: flex;
+    justify-content: center;
+}
+
+.array-element {
+    width: 2px;
+    background-color: rgb(94, 126, 232);
+    margin: 0 1px;
+}

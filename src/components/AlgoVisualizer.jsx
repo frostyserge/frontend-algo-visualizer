@@ -13,20 +13,22 @@ function AlgoVisualizer () {
 
     function resetArray() {
         const newArray = [];
-        // so here I use a for loop to iterate 100 items in the array and then push a random integer from 10 to 500 into newArray
-        for(let i = 0; i < 100; i++) {
-            newArray.push(randomNum(10, 500));
+        // so here I use a for loop to iterate 250 items in the array and then push a random integer from 10 to 500 into newArray
+        for(let i = 0; i < 250; i++) {
+            newArray.push(randomNum(10, 700));
         }
         // update the value of array to be newArray
         setArray(newArray)
     }
     return(
         <>
-        {array.map((value, idx) => (
-            <div className="arrayElement" key={idx}>
-                {value}
+            <div className="array-container">
+                {array.map((value, idx) => (
+                    <div className="array-element" key={idx} style={{height: `${value}px`}}>
+                        {/* {value} */}
+                    </div>
+                ))}
             </div>
-        ))}
         </>
     );
 }

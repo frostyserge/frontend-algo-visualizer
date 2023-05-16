@@ -1,4 +1,4 @@
-import logo from './logo.svg';
+import AlgoVisualizer from './components/AlgoVisualizer';
 import './App.css';
 
 function App() {
