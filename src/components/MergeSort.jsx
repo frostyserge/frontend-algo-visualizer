@@ -3,23 +3,31 @@ import AlgoVisualizer from "./AlgoVisualizer";
 // the MergeSort function takes (array) as input
 function MergeSort () {
     const  mergeFunc = (array) => {
+        
+        // array to store animations
+        const animations = [];
 
-        // just in case checking if the array length equals to 1 or is less than that = return the array as already sorted
-        if (array.length <= 1) {
-            return array;
-        };
-    
+        // create a shallow copy of original array
+        const sortedArray = array.slice();
+
+        
         // if the array.length is more than 1 -> define the Middle Index of the array
         const midIdx = Math.floor(array.length / 2);
-    
+        
         // grab two halves of the array by using the .slice() method - the left one and the right one
         const left = array.slice(0, midIdx);
         const right = array.slice(midIdx);
-    
-        // recursively sort the left and the right halves
-        return mergeHalves(mergeFunc(left), mergeFunc(right));
+        
+        // return the helper function for sorting. This function is responsible for for doing the merge sort algo. It takes the copy of the original array, the starting index and the last index of the subarray to be sorted and animations as arguments.
+        return mergeFuncHelp(sortedArray, 0, sortedArray.length - 1, animations);
+
+        return animations;
     }
     
+    // just in case checking if the array length equals to 1 or is less than that = return the array as already sorted
+    if (array.length <= 1) {
+        return array;
+    };
     // helper function that merges the two halves
     function mergeHalves(left, right) {
         let mergedArray = [];

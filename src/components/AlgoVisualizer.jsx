@@ -10,9 +10,9 @@ function AlgoVisualizer ({ mergeFunc, mergeHalves }) {
     // take action when component mounts by calling resetArray func which generates a new random array
     useEffect(() => {
         resetArray();
-        mergeFunc(array);
+        // mergeFunc(array);
     }, []);
-    console.log(array);
+    // console.log(array);
     console.log(mergeFunc(array))
     function resetArray() {
         const newArray = [];
@@ -23,13 +23,13 @@ function AlgoVisualizer ({ mergeFunc, mergeHalves }) {
         // update the value of array to be newArray
         setArray(newArray)
     }
-        // const sortedArray = MergeSort(array)
+        
 
     return(
         <>
             <button onClick={resetArray}>New Array</button> {/* button that calls the function resetArray that is first called when our component was mounted */}
             {/* {console.log()} */}
-            <button onClick={mergeFunc(array)}>Merge Sort</button>
+            <button onClick={mergeFunc}>Merge Sort</button>
             <div className="array-container">
                 {array.map((number, idx) => (
                     <div className="array-element" key={idx} style={{height: `${number}px`}}>
