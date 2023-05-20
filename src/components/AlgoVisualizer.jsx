@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 import './AlgoVisualizer.css';
 import MergeSort from './MergeSort';
 
-function AlgoVisualizer ({ mergeFunc, mergeHalves }) {
+function AlgoVisualizer ({ mergeFunc, mergeFuncHelp, merge }) {
 
     // initializing the array state on an empty array
     const [array, setArray] = useState([]);
@@ -16,20 +16,30 @@ function AlgoVisualizer ({ mergeFunc, mergeHalves }) {
     console.log(mergeFunc(array))
     function resetArray() {
         const newArray = [];
-        // so here I use a for loop to iterate 250 items in the array and then push a random integer from 10 to 500 into newArray
-        for(let i = 0; i < 250; i++) {
+        // here I use a for loop to iterate 88 items in the array and then push a random integer from 10 to 500 into newArray by ivoking the randomNum function
+        for(let i = 0; i < 88; i++) {
             newArray.push(randomNum(10, 700));
         }
         // update the value of array to be newArray
         setArray(newArray)
     }
+     
+    function runMergeSort () {
+        console.log(animations)
+        const animations = mergeFunc(array);
+        animateMergeSort(animations);
+    }
+
+    function animateMergeSort (animations) {
+        // animation logic
         
+    }
 
     return(
         <>
             <button onClick={resetArray}>New Array</button> {/* button that calls the function resetArray that is first called when our component was mounted */}
             {/* {console.log()} */}
-            <button onClick={mergeFunc}>Merge Sort</button>
+            <button onClick={runMergeSort}>Merge Sort</button>
             <div className="array-container">
                 {array.map((number, idx) => (
                     <div className="array-element" key={idx} style={{height: `${number}px`}}>
