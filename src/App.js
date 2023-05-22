@@ -1,14 +1,31 @@
 import AlgoVisualizer from './components/AlgoVisualizer';
 import MergeSort from './components/MergeSort'
 import Header from './components/Header';
-import { Routes, Route } from 'react-router-dom';
+import Footer from './components/Footer';
+// import Main from './components/Main';
+import Algos from './components/Algos';
+import SignUp from './components/SignUp';
+import SignIn from './components/SignIn';
+import Home from './components/Home';
+import { Routes, Route, Router } from 'react-router-dom';
+import { useState } from 'react';
 import './App.css';
-import { Form } from 'react-router-dom';
+// import { Form } from 'react-router-dom';
 
 function App() {
+  const [user, setUser] = useState(null);
+
   return (
     <div className="App">
-      <MergeSort />
+      <Header user={user}  setUser={setUser} />
+      <Routes>
+        <Route path='/' element={<Home />} />
+        {/* <Route index element={<Algos />} /> */}
+        <Route path='/algos' element={<Algos />} />
+        <Route path='/signup' element={<SignUp />} />
+        <Route path='/signin' element={<SignIn />} />
+      </Routes>
+      <Footer />
     </div>
   );
 }
