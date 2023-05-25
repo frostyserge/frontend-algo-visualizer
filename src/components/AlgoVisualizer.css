@@ -4,23 +4,23 @@
 }
 
 .array-element {
-    width: 2px;
+    width: 10px;
     background-color: rgb(94, 126, 232);
     margin: 0 1px;
 }
 
 .compared {
-    width: 2px;
+    width: 10px;
     background-color: red;
     margin: 0 1px;
 }
 .swapped {
-    width: 2px;
+    width: 10px;
     background-color: rgb(67, 132, 235);
     margin: 0 1px;
 }
 .sorted {
-    width: 2px;
+    width: 10px;
     background-color: rgb(6, 148, 34);
     margin: 0 1px;
 }

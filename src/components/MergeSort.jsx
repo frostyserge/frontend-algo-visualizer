@@ -64,7 +64,7 @@ function MergeSort () {
 
     };   
         return(
-                <AlgoVisualizer mergeFunc={mergeFunc} mergeFuncHelp={mergeFuncHelp} merge={merge} />
+                <AlgoVisualizer mergeSort={MergeSort} />
             )
 };
 

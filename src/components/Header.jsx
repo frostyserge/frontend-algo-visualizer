@@ -12,7 +12,7 @@ function Header({ user, setUser }) {
         <header>
             <nav className="nav">
                 <span id="nav-title">Algo Visualizer</span>
-                <Link to="/algos">
+                <Link to="/algovis">
                     <button>Algorithms</button>
                 </Link>
                 <div className='user-nav'>
