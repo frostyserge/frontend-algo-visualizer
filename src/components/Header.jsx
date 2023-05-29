@@ -24,7 +24,7 @@ function Header({ user, setUser }) {
                                 <button>Sign Up</button>
                             </Link>
                             <Link to="/signin">
-                                <button>Sign In</button>
+                                <div id="sign-in-div">Sign In</div>
                             </Link>
                         </>
                     )}
