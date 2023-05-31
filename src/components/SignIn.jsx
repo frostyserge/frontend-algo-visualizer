@@ -47,7 +47,7 @@ useEffect(() => {
                         Object.keys(user).length !== 0 && // since our user credentials is an object, we use Object.keys(user)
                         // javascript static method that takes user as a paramater and checks if user has full user attributes (aka logged in) => then
                         // show our Sign Out button. Otherwise it will return false and will run the code below
-                        <button onClick={handleSignout} variant="light">Sign Out</button> // 
+                        <button onClick={handleSignout} className="light">Sign Out</button> // 
                     }
                     { user && 
                     <div >
