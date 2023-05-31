@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import jwt_decode from "jwt-decode"; // dependency that decodes the JWT token into an object with all the user information
-import Button from "react-bootstrap/Button";
-import Image from "react-bootstrap/Image";
+// import Button from "react-bootstrap/Button";
+// import Image from "react-bootstrap/Image";
 
 function SignIn () {
 
@@ -51,7 +51,7 @@ useEffect(() => {
                     }
                     { user && 
                     <div >
-                        <img src={user.picture} ></img>
+                        <img src={user.picture} alt="user-profile"></img>
                         <h3>{user.name}</h3>
                     </div>
                     }
