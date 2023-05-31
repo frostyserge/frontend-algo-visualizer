@@ -70,31 +70,32 @@ function AlgoVisualizer({ mergeFunc, bubbleFunc }) {
         setSorting(true);
         const copiedArray = [...array];
         const animations = bubbleFunc(copiedArray);
-        console.log(bubbleFunc(array));
         const arrayElements = Array.from(document.getElementsByClassName('array-element'));
+      
         for (let i = 0; i < animations.length; i++) {
-                const [idx1, idx2] = animations[i];
-                const idx1Style = arrayElements[idx1]?.style;
-                const idx2Style = arrayElements[idx2]?.style;
-                    setTimeout(() => {
-                        idx1Style.backgroundColor = 'red';
-                        idx2Style.backgroundColor = 'red';
-                    }, i * 20);
-
-                setTimeout(() => {
-                    idx1Style.backgroundColor = '';
-                    idx2Style.backgroundColor = '';
-                }, i * 20 + 100);
-
-                setTimeout(() => {
-                    const [idx1, newHeight] = animations[i];
-                    const idx1Style = arrayElements[idx1]?.style;
-                    if (idx1Style) {
-                        idx1Style.height = `${newHeight}px`
-                    }
-                }, i * 20);
+          const [idx1, idx2] = animations[i];
+          const idx1Style = arrayElements[idx1]?.style;
+          const idx2Style = arrayElements[idx2]?.style;
+      
+          setTimeout(() => {
+            idx1Style.backgroundColor = 'red';
+            idx2Style.backgroundColor = 'red';
+          }, i * 20);
+      
+          setTimeout(() => {
+            idx1Style.backgroundColor = '';
+            idx2Style.backgroundColor = '';
+          }, i * 20 + 100);
+      
+          setTimeout(() => {
+            const newHeight = copiedArray[idx1];
+            if (idx1Style) {
+              idx1Style.height = `${newHeight}px`;
             }
+          }, i * 20);
         }
+      }
+      
         return (
             <>
                 <div className="controls">

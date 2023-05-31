@@ -1,13 +1,16 @@
 import { Link, useNavigate } from 'react-router-dom';
-import SignIn from './SignIn';
-// import AlgoVisualizer from './AlgoVisualizer.jsx';
+import Nav from "react-bootstrap/Nav";
+import Navbar from "react-bootstrap/Navbar";
+
 
 function Header({ user, setUser }) {
     const navigate = useNavigate();
+    setUser(null);
     function signOut() {
-        setUser(null);
         navigate('/');
     }
+
+    
 
     return (
         <header>

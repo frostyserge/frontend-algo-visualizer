@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 import jwt_decode from "jwt-decode"; // dependency that decodes the JWT token into an object with all the user information
+import Button from "react-bootstrap/Button";
+import Image from "react-bootstrap/Image";
 
 function SignIn () {
 
@@ -45,11 +47,11 @@ useEffect(() => {
                         Object.keys(user).length !== 0 && // since our user credentials is an object, we use Object.keys(user)
                         // javascript static method that takes user as a paramater and checks if user has full user attributes (aka logged in) => then
                         // show our Sign Out button. Otherwise it will return false and will run the code below
-                        <button onClick={handleSignout}>Sign Out</button> // 
+                        <button onClick={handleSignout} variant="light">Sign Out</button> // 
                     }
                     { user && 
-                    <div>
-                        <img src={user.picture}></img>
+                    <div >
+                        <img src={user.picture} ></img>
                         <h3>{user.name}</h3>
                     </div>
                     }

@@ -4,13 +4,14 @@ import Header from './components/Header';
 import Footer from './components/Footer';
 // import Main from './components/Main';
 import Algos from './components/Algos';
-import SignUp from './components/SignUp';
+// import SignUp from './components/SignUp';
 import SignIn from './components/SignIn';
 import Home from './components/Home';
 import { Routes, Route, Router } from 'react-router-dom';
 import { useState } from 'react';
 // import { motion } from 'framer-motion';
 import './App.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
 // import { Form } from 'react-router-dom';
 
 function App() {
