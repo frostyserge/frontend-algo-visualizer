@@ -37,7 +37,7 @@ useEffect(() => {
         { theme: "outline", size: "large"}
     );
 
-    google.accounts.id.prompt();
+    // google.accounts.id.prompt();
 }, []);
 
     return(
@@ -50,8 +50,8 @@ useEffect(() => {
                         <button onClick={handleSignout} className="light">Sign Out</button> // 
                     }
                     { user && 
-                    <div >
-                        <img src={user.picture} alt="user-profile"></img>
+                    <div  className="d-flex justify-content-end">
+                        <img src={user.picture}></img>
                         <h3>{user.name}</h3>
                     </div>
                     }
