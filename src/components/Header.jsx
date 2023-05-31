@@ -31,9 +31,6 @@ function Header({ user, setUser }) {
                                     <button>Sign In</button>
                                 </div>
                             </Link>
-                            {/* <Link to="/signup">
-                                <button>Sign Up</button>
-                            </Link> */}
                         </>
                     )}
                 </div>
