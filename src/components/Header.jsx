@@ -1,5 +1,6 @@
 import { Link, useNavigate } from 'react-router-dom';
-import AlgoVisualizer from './AlgoVisualizer.jsx';
+import SignIn from './SignIn';
+// import AlgoVisualizer from './AlgoVisualizer.jsx';
 
 function Header({ user, setUser }) {
     const navigate = useNavigate();
@@ -11,7 +12,9 @@ function Header({ user, setUser }) {
     return (
         <header>
             <nav className="nav">
-                <span id="nav-title">Algo Visualizer</span>
+                <Link to="/">
+                    <span id="nav-title">Algo Visualizer</span>
+                </Link>
                 <Link to="/algovis">
                     <button>Algorithms</button>
                 </Link>
@@ -20,12 +23,14 @@ function Header({ user, setUser }) {
                         <button onCLick={signOut}>Sign Out</button>
                     ) : (
                         <>
-                            <Link to="/signup">
-                                <button>Sign Up</button>
-                            </Link>
                             <Link to="/signin">
-                                <div id="sign-in-div">Sign In</div>
+                                <div id="sign-in-div">
+                                    <button>Sign In</button>
+                                </div>
                             </Link>
+                            {/* <Link to="/signup">
+                                <button>Sign Up</button>
+                            </Link> */}
                         </>
                     )}
                 </div>

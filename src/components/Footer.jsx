@@ -1,5 +1,5 @@
-import { Link } from 'react-router-dom';
-import AlgoVisualizer from './AlgoVisualizer.jsx';
+// import { Link } from 'react-router-dom';
+// import AlgoVisualizer from './AlgoVisualizer.jsx';
 
 function Footer () {
     return(

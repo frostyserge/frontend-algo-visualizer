@@ -1,5 +1,5 @@
 import AlgoVisualizer from './components/AlgoVisualizer';
-import MergeSort from './components/MergeSort'
+// import MergeSort from './components/MergeSort'
 import Header from './components/Header';
 import Footer from './components/Footer';
 // import Main from './components/Main';
@@ -9,7 +9,7 @@ import SignIn from './components/SignIn';
 import Home from './components/Home';
 import { Routes, Route, Router } from 'react-router-dom';
 import { useState } from 'react';
-import { motion } from 'framer-motion';
+// import { motion } from 'framer-motion';
 import './App.css';
 // import { Form } from 'react-router-dom';
 
@@ -34,7 +34,7 @@ function App() {
 
 function mergeFuncHelp (mainArray, start, end, auxArray, animations) {
     
-    if (start === end) return;
+    if (start >= end) return;
 
     // if the array.length is more than 1 -> define the Middle Index of the array
     const mid = Math.floor((start + end) / 2);
@@ -99,6 +99,28 @@ function mergeFuncHelp (mainArray, start, end, auxArray, animations) {
         mainArray[k] = auxArray[j];
       }
     }
+
+    const bubbleFunc = (array) => {
+      // const to store an array of animations for the sorting process
+      const animations = [];
+
+      // outer for loop to iterate thru the length of the array
+      for (let i = 0; i < array.length; i++) {
+        // inner loop to iterate thru the array minus the current index
+        for (let j = 0; j < array.length - i - 1; j++) {
+          // then push the indices that are compared to the animations array
+          animations.push([j, j + 1]);
+          // swapping of elements by comparing the current index to the one next to it
+          if (array[j] > array[j + 1]) { // basically if the left side is greater than the right side
+            // we switch the indeces' spots
+            [array[j], array[j + 1]] = [array[j +1], array[j]];
+            // then again push the swapped elements to the animations array
+            animations.push([j, j + 1]);
+          }
+        }
+      }
+      return animations;
+    }
     
     return (
       <div className="App">
@@ -107,8 +129,8 @@ function mergeFuncHelp (mainArray, start, end, auxArray, animations) {
         <Route path='/' element={<Home />} />
         {/* <Route index element={<Algos />} /> */}
         <Route path='/algos' element={<Algos />} />
-        <Route path='/algovis' element={<AlgoVisualizer mergeFunc={mergeFunc} />} />
-        <Route path='/signup' element={<SignUp />} />
+        <Route path='/algovis' element={<AlgoVisualizer mergeFunc={mergeFunc} bubbleFunc={bubbleFunc} />} />
+        {/* <Route path='/signup' element={<SignUp />} /> */}
         <Route path='/signin' element={<SignIn />} />
       </Routes>
       <Footer />
