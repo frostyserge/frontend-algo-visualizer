@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import jwt_decode from "jwt-decode"; // dependency that decodes the JWT token into an object with all the user information
-// import Button from "react-bootstrap/Button";
-// import Image from "react-bootstrap/Image";
+import { MDBBtn, MDBCol } from 'mdb-react-ui-kit';
 
 function SignIn () {
 
@@ -47,11 +46,13 @@ useEffect(() => {
                         Object.keys(user).length !== 0 && // since our user credentials is an object, we use Object.keys(user)
                         // javascript static method that takes user as a paramater and checks if user has full user attributes (aka logged in) => then
                         // show our Sign Out button. Otherwise it will return false and will run the code below
-                        <button onClick={handleSignout} className="light">Sign Out</button> // 
+                        <MDBBtn onClick={handleSignout} color="light" rippleColor="dark" >Sign Out</MDBBtn>  
                     }
                     { user && 
-                    <div  className="d-flex justify-content-end">
-                        <img src={user.picture}></img>
+                    <div>
+                        <MDBCol >
+                            <img src={user.picture} className="img-fluid rounded-circle"></img>
+                        </MDBCol>
                         <h3>{user.name}</h3>
                     </div>
                     }

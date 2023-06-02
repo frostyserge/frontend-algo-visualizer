@@ -1,15 +1,14 @@
 import './Algos.css';
 import { useState, useEffect } from 'react';
-import { MDBContainer } from 'mdb-react-ui-kit';
+import { MDBContainer, MDBBtn } from 'mdb-react-ui-kit';
 
 function Algos() {
     const [array, setArray] = useState([]);
     const [sorting, setSorting] = useState(false);
-    const [sorted, setSorted] = useState(false);
 
     // const animationSpeed = 100;
 
-    // take action when component mounts by calling resetArray func which generates a new random array
+    // call a function when component mounts by calling resetArray func which generates a new random array
     useEffect(() => {
         resetArray();
     }, []);
@@ -25,13 +24,13 @@ function Algos() {
         const newArray = [];
         // here I use a for loop to iterate 88 items in the array and then push a random integer from 10 to 500 into newArray by ivoking the randomNum function
         for (let i = 0; i < 88; i++) {
-            newArray.push(randomNum(10, 700));
+            newArray.push(randomNum(10, 500));
         }
         // update the value of array to be newArray
         setArray(newArray);
     }
 
-    // stole it here https://www.geeksforgeeks.org/how-to-generate-random-number-in-given-range-using-javascript/
+    // from here here https://www.geeksforgeeks.org/how-to-generate-random-number-in-given-range-using-javascript/
     function randomNum(min, max) {
         return Math.floor(Math.random() * (max - min + 1) + min);
     }
@@ -123,131 +122,119 @@ function Algos() {
         setSorting(true);
         const copiedArray = [...array];
         const animations = mergeFunc(copiedArray);
+      
         for (let i = 0; i < animations.length; i++) {
-            const arrayElements = Array.from(
-                document.getElementsByClassName('array-element')
-            );
-            const colorChange = i % 3 !== 2;
-            if (colorChange) {
-                const [idx1, idx2] = animations[i];
-                const idx1Style = arrayElements[idx1]?.style;
-                const idx2Style = arrayElements[idx2]?.style;
-                const color = i % 3 === 0 ? 'red' : 'green';
-                if (idx1Style && idx2Style) {
-                    setTimeout(() => {
-                        idx1Style.backgroundColor = color;
-                        idx2Style.backgroundColor = color;
-                    }, i * 20);
-                }
-            } else {
-                setTimeout(() => {
-                    const [idx1, newHeight] = animations[i];
-                    const idx1Style = arrayElements[idx1]?.style;
-                    if (idx1Style) {
-                        idx1Style.height = `${newHeight}px`;
-                    }
-                }, i * 20);
+          const arrayElements = Array.from(document.getElementsByClassName('array-element'));
+      
+          // Check if it's a color change step or a height update step
+          const colorChange = i % 3 !== 2;
+      
+          if (colorChange) {
+            // Color change step
+      
+            // Retrieve the indices and styles of the elements to be compared
+            const [idx1, idx2] = animations[i];
+            const idx1Style = arrayElements[idx1].style;
+            const idx2Style = arrayElements[idx2].style;
+      
+            // Alternate between red and green colors for comparison steps
+            const color = i % 3 === 0 ? 'red' : 'green';
+      
+            if (idx1Style && idx2Style) {
+              setTimeout(() => {
+                // Apply the color to the compared elements
+                idx1Style.backgroundColor = color;
+                idx2Style.backgroundColor = color;
+              }, i * 10);
             }
+          } else {
+            // Height update step
+      
+            setTimeout(() => {
+              // Retrieve the index and new height of the element
+              const [idx1, newHeight] = animations[i];
+              const idx1Style = arrayElements[idx1].style;
+      
+              if (idx1Style) {
+                // Update the height of the element
+                idx1Style.height = `${newHeight}px`;
+              }
+            }, i * 10);
+          }
         }
-    };
+      }
 
     const bubbleFunc = (array) => {
-        // const to store an array of animations for the sorting process
-        const animations = [];
+    const animations = []; // array to store animations representing the steps of the sorting process
 
-        // outer for loop to iterate thru the length of the array
-        for (let i = 0; i < array.length; i++) {
-            // inner loop to iterate thru the array minus the current index
-            for (let j = 0; j < array.length - i - 1; j++) {
-                // then push the indices that are compared to the animations array
-                animations.push([j, j + 1]);
-                // swapping of elements by comparing the current index to the one next to it
-                if (array[j] > array[j + 1]) {
-                    // basically if the left side is greater than the right side
-                    // we switch the indeces' spots
-                    [array[j], array[j + 1]] = [array[j + 1], array[j]];
-                    // then again push the swapped elements to the animations array
-                    animations.push([j, j + 1]);
-                }
+    // outer loop iterating over the elements of the array
+    for (let i = 0; i < array.length; i++) {
+        // inner loop iterating over the elements of the array
+        // the number of iterations decreases with each outer loop iteration
+        for (let j = 0; j < array.length - i - 1; j++) {
+            animations.push([j, j + 1, false]); // false indicates a comparison 
+
+            // checking if the current element is greater than the next element
+            if (array[j] > array[j + 1]) {
+                // swapping the elements using destructuring assignment
+                [array[j], array[j + 1]] = [array[j + 1], array[j]];
+
+                animations.push([j, j + 1, true]); // true indicates a swap of elements
             }
         }
-        return animations;
-    };
+    }
 
+    return animations; // Return the array of animations
+};
+
+    
     function runBubbleSort() {
         setSorting(true);
         const copiedArray = [...array];
-        const animations = bubbleFunc(copiedArray);
-        const arrayElements = Array.from(
-            document.getElementsByClassName('array-element')
-        );
-
-        for (let i = 0; i < arrayElements.length - 1; i++) {
-            for (let j = 0; j < (arrayElements.length - i - 1); j++) {
-                setTimeout(() => {
-                    if(arrayElements[j] > arrayElements[j + 1]) {
-                        if (j > 0) {
-                            arrayElements[j - 1]?.style.classList.remove('swapped');
-                            arrayElements[j]?.style.classList.remove('swapped');
-                        }
-                        arrayElements[j]?.style.classList.add('swapped');
-                        arrayElements[j + 1]?.style.classList.add('swapped');
-                        setTimeout(() => {
-                            const temp = arrayElements[j];
-                            arrayElements[j] = arrayElements[j + 1];
-                            arrayElements[j + 1] = temp;
-                        }, 100)
-                        if (j === arrayElements.length - i - 2) {
-                            setTimeout(() => {
-                                arrayElements[j]?.style.classList.remove('swapped');
-                                arrayElements[j + 1]?.style.classList.remove('swapped');
-                            }, 200)
-                        }
-                    }
-                }, 200 + 100)
-            }
-            // const [idx1, idx2] = animations[i];
-            // const idx1Style = arrayElements[idx1]?.style;
-            // const idx2Style = arrayElements[idx2]?.style;
-
-            // setTimeout(() => {
-            //     idx1Style.backgroundColor = 'red';
-            //     idx2Style.backgroundColor = 'red';
-            // }, i * 100);
-
-            // setTimeout(() => {
-            //     idx1Style.backgroundColor = '';
-            //     idx2Style.backgroundColor = '';
-          
-            //     const tempHeight = idx1Style.height;
-            //     idx1Style.height = idx2Style.height;
-            //     idx2Style.height = tempHeight;
-          
-            //     const tempValue = copiedArray[idx1];
-            //     copiedArray[idx1] = copiedArray[idx2];
-            //     copiedArray[idx2] = tempValue;
-          
-            //     if (i === animations.length - 1) {
-            //       setTimeout(() => {
-            //         setSorting(false);
-            //       }, 100);
-            //     }
-            //   }, i * 100);
+        const animations = bubbleFunc(copiedArray); // calling the bubbleFunc function to generate an array of animations for the bubble sort algorithm.
+        const arrayElements = Array.from(document.getElementsByClassName('array-element')); // converting the arrayElements into array
+    
+        for (let i = 0; i < animations.length; i++) {
+            const [idx1, idx2, isSwap] = animations[i]; // destructuring the animations array to get the indices of the elements
+            // and a bolean flag to toggle the indicator whether it's a swap or just a comparison
+            const idx1Style = arrayElements[idx1].style;
+            const idx2Style = arrayElements[idx2].style;
+    
+            setTimeout(() => { // delay to change 
+                idx1Style.backgroundColor = 'red';
+                idx2Style.backgroundColor = 'red';
+            }, i * 10);
+    
+            setTimeout(() => {
+                if (isSwap) {  // if this animation is a swap, swap the heights
+                    const tempHeight = idx1Style.height;
+                    idx1Style.height = idx2Style.height;
+                    idx2Style.height = tempHeight;
+                }
+                idx1Style.backgroundColor = '';
+                idx2Style.backgroundColor = '';
+            }, i * 10 + 50);
         }
-
-        // setTimeout(() => {
-        //     setSorting(false);
-        // }, animations.length * 100);
+    
+        setTimeout(() => {
+            setSorting(false);
+        }, animations.length * 100);
     }
+    
 
     return (
         <>
             <>
                 <div className="controls">
-                    <button onClick={resetArray}>New Array</button>
-                    {/* button that calls the function resetArray that is first called when our component was mounted */}
-                    <button onClick={runMergeSort}>Merge Sort</button>
-                    <button onClick={runBubbleSort}>Bubble Sort</button>
+                    <MDBBtn color='light' rippleColor='dark' onClick={resetArray}>
+                        New Array
+                    </MDBBtn>
+                    <MDBBtn color='light' rippleColor='dark' onClick={runMergeSort}>
+                        Merge Sort
+                    </MDBBtn>
+                    <MDBBtn color='light' rippleColor='dark' onClick={runBubbleSort}>
+                        Bubble Sort
+                    </MDBBtn>
                 </div>
                 <MDBContainer>
                     <div className="array-container">

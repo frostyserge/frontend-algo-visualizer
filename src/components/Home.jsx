@@ -3,11 +3,8 @@
 function Home () {
     return(
         <>
-            <h1>Home</h1>
-            {/* <Link to='/algos'>
-                <button>Algorithms</button>
-            </Link> */}
-            <h2>Welcome</h2>
+            <h1>Algos App</h1>
+
         </>
     )
 }
