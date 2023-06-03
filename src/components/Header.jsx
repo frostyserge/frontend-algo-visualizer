@@ -1,40 +1,52 @@
 import { Link, useNavigate } from 'react-router-dom';
-// import Nav from "react-bootstrap/Nav";
-// import Navbar from "react-bootstrap/Navbar";
+import { useState } from 'react';
+import {
+    MDBContainer,
+    MDBNavbar,
+    MDBNavbarBrand,
+    MDBNavbarToggler,
+    MDBIcon,
+    MDBNavbarNav,
+    MDBNavbarItem,
+    MDBCollapse
+} from 'mdb-react-ui-kit';
+import SignIn from './SignIn';
 
-
-function Header({ user, setUser }) {
+function Header() {
+    const [showBasic, setShowBasic] = useState(false);
     const navigate = useNavigate();
-    setUser(null);
-    function signOut() {
-        navigate('/');
-    }
-
-    
 
     return (
         <header>
-            <nav className="nav">
-                <Link to="/">
-                    <span id="nav-title">Algo Visualizer</span>
-                </Link>
-                <Link to="/algovis">
-                    <button>Algorithms</button>
-                </Link>
-                <div className='user-nav'>
-                    {user ? (
-                        <button onCLick={signOut}>Sign Out</button>
-                    ) : (
-                        <>
-                            <Link to="/signin">
-                                <div id="sign-in-div">
-                                    <button>Sign In</button>
-                                </div>
-                            </Link>
-                        </>
-                    )}
-                </div>
-            </nav>
+            <MDBNavbar expand="lg" light bgColor="light">
+                <MDBContainer fluid>
+                    <MDBNavbarBrand>
+                        <Link to="/" className="text-reset">
+                            Home
+                        </Link>
+                    </MDBNavbarBrand>
+                    <Link to="/algos" className="text-reset">
+                        Algorithms
+                    </Link>
+                    <MDBNavbarToggler
+                        aria-controls="navbarSupportedContent"
+                        aria-expanded="false"
+                        aria-label="Toggle navigation"
+                        onClick={() => setShowBasic(!showBasic)}
+                    >
+                        <MDBIcon icon="bars" fas />
+                    </MDBNavbarToggler>
+
+                    <MDBCollapse navbar show={showBasic}>
+                        <MDBNavbarNav className="mr-auto mb-2 mb-lg-0">
+                            <MDBNavbarItem>
+                            </MDBNavbarItem>
+                        </MDBNavbarNav>
+                            <SignIn />
+                    </MDBCollapse>
+                </MDBContainer>
+            </MDBNavbar>
+            <nav className="nav"></nav>
         </header>
     );
 }
