@@ -116,97 +116,102 @@ function Algos() {
             // Copy the value from the auxiliary array to the mainArray
             mainArray[k] = auxArray[j];
         }
-    };
+    }
 
     function runMergeSort() {
         setSorting(true);
         const copiedArray = [...array];
         const animations = mergeFunc(copiedArray);
-      
+
         for (let i = 0; i < animations.length; i++) {
-          const arrayElements = Array.from(document.getElementsByClassName('array-element'));
-      
-          // Check if it's a color change step or a height update step
-          const colorChange = i % 3 !== 2;
-      
-          if (colorChange) {
-            // Color change step
-      
-            // Retrieve the indices and styles of the elements to be compared
-            const [idx1, idx2] = animations[i];
-            const idx1Style = arrayElements[idx1].style;
-            const idx2Style = arrayElements[idx2].style;
-      
-            // Alternate between red and green colors for comparison steps
-            const color = i % 3 === 0 ? 'red' : 'green';
-      
-            if (idx1Style && idx2Style) {
-              setTimeout(() => {
-                // Apply the color to the compared elements
-                idx1Style.backgroundColor = color;
-                idx2Style.backgroundColor = color;
-              }, i * 10);
-            }
-          } else {
-            // Height update step
-      
-            setTimeout(() => {
-              // Retrieve the index and new height of the element
-              const [idx1, newHeight] = animations[i];
-              const idx1Style = arrayElements[idx1].style;
-      
-              if (idx1Style) {
-                // Update the height of the element
-                idx1Style.height = `${newHeight}px`;
-              }
-            }, i * 10);
-          }
-        }
-      }
+            const arrayElements = Array.from(
+                document.getElementsByClassName('array-element')
+            );
 
-    const bubbleFunc = (array) => {
-    const animations = []; // array to store animations representing the steps of the sorting process
+            // Check if it's a color change step or a height update step
+            const colorChange = i % 3 !== 2;
 
-    // outer loop iterating over the elements of the array
-    for (let i = 0; i < array.length; i++) {
-        // inner loop iterating over the elements of the array
-        // the number of iterations decreases with each outer loop iteration
-        for (let j = 0; j < array.length - i - 1; j++) {
-            animations.push([j, j + 1, false]); // false indicates a comparison 
+            if (colorChange) {
+                // Color change step
 
-            // checking if the current element is greater than the next element
-            if (array[j] > array[j + 1]) {
-                // swapping the elements using destructuring assignment
-                [array[j], array[j + 1]] = [array[j + 1], array[j]];
+                // Retrieve the indices and styles of the elements to be compared
+                const [idx1, idx2] = animations[i];
+                const idx1Style = arrayElements[idx1].style;
+                const idx2Style = arrayElements[idx2].style;
 
-                animations.push([j, j + 1, true]); // true indicates a swap of elements
+                // Alternate between red and green colors for comparison steps
+                const color = i % 3 === 0 ? 'red' : 'green';
+
+                if (idx1Style && idx2Style) {
+                    setTimeout(() => {
+                        // Apply the color to the compared elements
+                        idx1Style.backgroundColor = color;
+                        idx2Style.backgroundColor = color;
+                    }, i * 10);
+                }
+            } else {
+                // Height update step
+
+                setTimeout(() => {
+                    // Retrieve the index and new height of the element
+                    const [idx1, newHeight] = animations[i];
+                    const idx1Style = arrayElements[idx1].style;
+
+                    if (idx1Style) {
+                        // Update the height of the element
+                        idx1Style.height = `${newHeight}px`;
+                    }
+                }, i * 10);
             }
         }
     }
 
-    return animations; // Return the array of animations
-};
+    const bubbleFunc = (array) => {
+        const animations = []; // array to store animations representing the steps of the sorting process
 
-    
+        // outer loop iterating over the elements of the array
+        for (let i = 0; i < array.length; i++) {
+            // inner loop iterating over the elements of the array
+            // the number of iterations decreases with each outer loop iteration
+            for (let j = 0; j < array.length - i - 1; j++) {
+                animations.push([j, j + 1, false]); // false indicates a comparison
+
+                // checking if the current element is greater than the next element
+                if (array[j] > array[j + 1]) {
+                    // swapping the elements using destructuring assignment
+                    [array[j], array[j + 1]] = [array[j + 1], array[j]];
+
+                    animations.push([j, j + 1, true]); // true indicates a swap of elements
+                }
+            }
+        }
+
+        return animations; // Return the array of animations
+    };
+
     function runBubbleSort() {
         setSorting(true);
         const copiedArray = [...array];
         const animations = bubbleFunc(copiedArray); // calling the bubbleFunc function to generate an array of animations for the bubble sort algorithm.
-        const arrayElements = Array.from(document.getElementsByClassName('array-element')); // converting the arrayElements into array
-    
+        const arrayElements = Array.from(
+            document.getElementsByClassName('array-element')
+        ); // converting the arrayElements into array
+
         for (let i = 0; i < animations.length; i++) {
             const [idx1, idx2, isSwap] = animations[i]; // destructuring the animations array to get the indices of the elements
             // and a bolean flag to toggle the indicator whether it's a swap or just a comparison
             const idx1Style = arrayElements[idx1].style;
             const idx2Style = arrayElements[idx2].style;
-    
-            setTimeout(() => { // delay to change 
+
+            setTimeout(() => {
+                // delay to change
                 idx1Style.backgroundColor = 'red';
                 idx2Style.backgroundColor = 'red';
             }, i * 10);
-    
+
             setTimeout(() => {
-                if (isSwap) {  // if this animation is a swap, swap the heights
+                if (isSwap) {
+                    // if this animation is a swap, swap the heights
                     const tempHeight = idx1Style.height;
                     idx1Style.height = idx2Style.height;
                     idx2Style.height = tempHeight;
@@ -215,24 +220,35 @@ function Algos() {
                 idx2Style.backgroundColor = '';
             }, i * 10 + 50);
         }
-    
+
         setTimeout(() => {
             setSorting(false);
         }, animations.length * 100);
     }
-    
 
     return (
         <>
             <>
                 <div className="controls">
-                    <MDBBtn color='light' rippleColor='dark' onClick={resetArray}>
+                    <MDBBtn
+                        color="light"
+                        rippleColor="dark"
+                        onClick={resetArray}
+                    >
                         New Array
                     </MDBBtn>
-                    <MDBBtn color='light' rippleColor='dark' onClick={runMergeSort}>
+                    <MDBBtn
+                        color="light"
+                        rippleColor="dark"
+                        onClick={runMergeSort}
+                    >
                         Merge Sort
                     </MDBBtn>
-                    <MDBBtn color='light' rippleColor='dark' onClick={runBubbleSort}>
+                    <MDBBtn
+                        color="light"
+                        rippleColor="dark"
+                        onClick={runBubbleSort}
+                    >
                         Bubble Sort
                     </MDBBtn>
                 </div>
