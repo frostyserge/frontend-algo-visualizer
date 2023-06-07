@@ -1,7 +1,7 @@
 # Algo Visualizer
 # Project 3
 
-# URL https://sergiis-algo-visualizer.netlify.app/
+# URL https://algos-app.netlify.app
 
 # Goal
 - As a software engineering student, like many others, I struggle with algorithms especially because I am mostly a visual learner. Therefore this project would help people like me understand better how algorithms work in a fun and easy to remember way.
