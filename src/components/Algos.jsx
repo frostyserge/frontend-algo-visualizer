@@ -22,7 +22,7 @@ function Algos() {
     console.log(array);
     function resetArray() {
         const newArray = [];
-        // here I use a for loop to iterate 88 items in the array and then push a random integer from 10 to 500 into newArray by ivoking the randomNum function
+        // for loop to iterate 88 items in the array and then push a random integer from 10 to 500 into newArray by ivoking the randomNum function
         for (let i = 0; i < 88; i++) {
             newArray.push(randomNum(10, 500));
         }
@@ -30,7 +30,7 @@ function Algos() {
         setArray(newArray);
     }
 
-    // from here here https://www.geeksforgeeks.org/how-to-generate-random-number-in-given-range-using-javascript/
+    // from here https://www.geeksforgeeks.org/how-to-generate-random-number-in-given-range-using-javascript/
     function randomNum(min, max) {
         return Math.floor(Math.random() * (max - min + 1) + min);
     }
@@ -121,9 +121,11 @@ function Algos() {
     function runMergeSort() {
         setSorting(true);
         const copiedArray = [...array];
+        // calling the mergeFunc function to generate an array of animations for the merge sort algorithm.
         const animations = mergeFunc(copiedArray);
 
         for (let i = 0; i < animations.length; i++) {
+            // converting the arrayElements into array
             const arrayElements = Array.from(
                 document.getElementsByClassName('array-element')
             );
@@ -131,9 +133,8 @@ function Algos() {
             // Check if it's a color change step or a height update step
             const colorChange = i % 3 !== 2;
 
+            // Color change step
             if (colorChange) {
-                // Color change step
-
                 // Retrieve the indices and styles of the elements to be compared
                 const [idx1, idx2] = animations[i];
                 const idx1Style = arrayElements[idx1].style;
