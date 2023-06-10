@@ -20,7 +20,7 @@
 ![](https://github.com/frostyserge/algo-visualization/assets/64938599/eb36eb3a-3b9e-4a44-a44e-642ba387d8c5)
 
 # Resources used while working on the project
-- (https://algo-expert.io)
+- https://algo-expert.io
 - https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/join
 - https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Logical_AND
 - https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/keys
